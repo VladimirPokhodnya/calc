@@ -21,9 +21,9 @@ public class Main {
         String result;
         String[] numbers = input.split("[-+*/]");
         if (numbers.length == 2) {
-            String number1 = numbers[0].troman();
-            String number2 = numbers[1].troman();
-            String operation = ((input.split(number1))[1].split(number2))[0].troman();
+            String number1 = numbers[0].trim();
+            String number2 = numbers[1].trim();
+            String operation = ((input.split(number1))[1].split(number2))[0].trim();
             int arab = checkNumbers(number1, number2, operation);
             if (arab >= -100 && arab <= 100) {
                 result = "" + arab;
