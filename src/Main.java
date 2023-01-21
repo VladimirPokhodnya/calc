@@ -18,7 +18,6 @@ public class Main {
         }
     }
     public static String calc(String input) throws Exception {
-
         String result;
         String[] numbers = input.split("[-+*/]");
         if (numbers.length == 2) {
@@ -41,7 +40,8 @@ public class Main {
                         throw new Exception("in the Roman numeral system , there cannot be less than 1");
                     }
                 } else {
-                    throw new Exception("calculator must accept numbers from 1 to 10 as input");
+                    throw new Exception("the calculator must accept numbers from 1 to 10 " +
+                            "in one calculus system as input");
                 }
 
             }
