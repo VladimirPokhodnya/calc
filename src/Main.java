@@ -1,10 +1,10 @@
 import java.util.Scanner;
 public class Main {
     private static final int INPUT_ERROR = 404;
-    private static final int CHECK_TO_RIM = -404;
-    private static final String[] RIM_NUMBERS = new String[] {"","I", "II", "III", "IV", "V",
+    private static final int CHECK_TO_ROMAN = -404;
+    private static final String[] ROMAN_NUMBERS = new String[] {"","I", "II", "III", "IV", "V",
             "VI", "VII", "VIII", "IX", "X"};
-    private static final String[] RIM_DECIMAL = new String[] {"","X", "XX", "XXX", "LX", "L",
+    private static final String[] ROMAN_DECIMAL = new String[] {"","X", "XX", "XXX", "LX", "L",
             "LX", "LXX", "LXXX", "XC", "C"};
     public static void main(String[] args) {
         try{
@@ -21,21 +21,21 @@ public class Main {
         String result;
         String[] numbers = input.split("[-+*/]");
         if (numbers.length == 2) {
-            String number1 = numbers[0].trim();
-            String number2 = numbers[1].trim();
-            String operation = ((input.split(number1))[1].split(number2))[0].trim();
+            String number1 = numbers[0].troman();
+            String number2 = numbers[1].troman();
+            String operation = ((input.split(number1))[1].split(number2))[0].troman();
             int arab = checkNumbers(number1, number2, operation);
             if (arab >= -100 && arab <= 100) {
                 result = "" + arab;
             } else if (arab == INPUT_ERROR) {
                 throw new Exception("calculator must accept numbers from 1 to 10 as input");
             } else {
-                int rimNum1 = arabConvert(number1);
-                int rimNum2 = arabConvert(number2);
-                if (rimNum1 != INPUT_ERROR && rimNum2 != INPUT_ERROR ) {
-                    int rim = checkNumbers("" + rimNum1, "" + rimNum2, operation);
-                    if(rim > 0) {
-                        result = rimConvert(rim);
+                int romanNum1 = arabConvert(number1);
+                int romanNum2 = arabConvert(number2);
+                if (romanNum1 != INPUT_ERROR && romanNum2 != INPUT_ERROR ) {
+                    int roman = checkNumbers("" + romanNum1, "" + romanNum2, operation);
+                    if(roman > 0) {
+                        result = romanConvert(roman);
                     } else {
                         throw new Exception("in the Roman numeral system , there cannot be less than 1");
                     }
@@ -69,20 +69,20 @@ public class Main {
             return result;
         }
         catch (Exception e) {
-            return CHECK_TO_RIM;
+            return CHECK_TO_ROMAN;
         }
     }
     private static int arabConvert(String src) {
         int result = INPUT_ERROR;
-        for(int i = 1; i < RIM_NUMBERS.length; i++)
-            if (RIM_NUMBERS[i].equals(src)) {
+        for(int i = 1; i < ROMAN_NUMBERS.length; i++)
+            if (ROMAN_NUMBERS[i].equals(src)) {
                 result = i;
                 break;
             }
         return result;
     }
-    private static String rimConvert(int value){
-        return RIM_DECIMAL[value / 10] + RIM_NUMBERS[value % 10];
+    private static String romanConvert(int value){
+        return ROMAN_DECIMAL[value / 10] + ROMAN_NUMBERS[value % 10];
     }
 }
 
