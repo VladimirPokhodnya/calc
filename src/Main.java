@@ -43,7 +43,6 @@ public class Main {
                     throw new Exception("the calculator must accept numbers from 1 to 10 " +
                             "in one calculus system as input");
                 }
-
             }
         } else {
             throw new Exception("format of the mathematical operation does not satisfy the task - " +
